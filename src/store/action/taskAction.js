@@ -1,0 +1,84 @@
+import {
+    TASK_ADD_SUCCESS, TASK_ADD_FAIL, TASK_ADD_SUCCESS_CLEAR,
+    TASK_ADD_FAIL_CLEAR, TASK_GET_SUCCESS,TASK_DELETE_SUCCESS,TASK_UPDATE_SUCCESS
+} from '../types/taskType'
+import axios from 'axios'
+
+
+
+export const taskkAdd = (data)=>{
+    return async(dispatch)=>{
+        try{
+            let response = await axios.post('http://localhost:8080/addtask',data)
+            dispatch({
+                type:TASK_ADD_SUCCESS,
+                payload:{
+                    message:response.data.message
+                }
+            })
+
+        }
+        catch(error){
+            let data = error.response.data.message
+            dispatch({
+                type: TASK_ADD_FAIL,
+                payload:{
+                    errorMessage:data
+                }
+            })
+        }
+    }
+}
+
+export const getTasks = (data)=>{
+    const {token,email}=data;
+    const headers = { "Authorization": token };
+    return async(dispatch)=>{
+        try{
+            let response = await axios.get(`http://localhost:8080/gettask?user=${email}`,{ headers})
+            dispatch({
+                type:TASK_GET_SUCCESS,
+                payload:{
+                    data:response.data.data
+                }
+            })
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
+
+export const deleteTasks = (data)=>{
+    return async(dispatch)=>{
+        try{
+            let response = await axios.delete(`http://localhost:8080/deletetask?id=${data}`,)
+            dispatch({
+                type:TASK_DELETE_SUCCESS,
+                payload:{
+                    data:response.data.data
+                }
+            })
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
+
+export const updateTasks = (data)=>{
+
+    return async(dispatch)=>{
+        try{
+            let response = await axios.put(`http://localhost:8080/updatetask`,data)
+            dispatch({
+                type:TASK_UPDATE_SUCCESS,
+                payload:{
+                    data:response.data.data
+                }
+            })
+            localStorage.removeItem('id')
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
+
