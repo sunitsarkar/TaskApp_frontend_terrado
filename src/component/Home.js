@@ -241,7 +241,13 @@ export default function Home() {
                                         </div>
                                     </div>
                                 </motion.div>
-                            }) : null
+                            }) : <motion.h1
+                            initial={{ x: 1000 }}
+                            animate={{ x: 0 }}
+                            transition={{ type: "spring", duration: 1.2 }}
+                            >
+                                No Pending Task
+                            </motion.h1>
                             }
                         </div>
 
