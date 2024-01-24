@@ -9,7 +9,7 @@ import axios from 'axios'
 export const taskkAdd = (data)=>{
     return async(dispatch)=>{
         try{
-            let response = await axios.post('http://localhost:8080/addtask',data)
+            let response = await axios.post('https://task-backend-1iky.onrender.com/addtask',data)
             dispatch({
                 type:TASK_ADD_SUCCESS,
                 payload:{
@@ -35,7 +35,7 @@ export const getTasks = (data)=>{
     const headers = { "Authorization": token };
     return async(dispatch)=>{
         try{
-            let response = await axios.get(`http://localhost:8080/gettask?user=${email}`,{ headers})
+            let response = await axios.get(`https://task-backend-1iky.onrender.com/gettask?user=${email}`,{ headers})
             dispatch({
                 type:TASK_GET_SUCCESS,
                 payload:{
@@ -49,9 +49,10 @@ export const getTasks = (data)=>{
 }
 
 export const deleteTasks = (data)=>{
+    console.log('delete hitted')
     return async(dispatch)=>{
         try{
-            let response = await axios.delete(`http://localhost:8080/deletetask?id=${data}`,)
+            let response = await axios.delete(`https://task-backend-1iky.onrender.com/deletetask?id=${data}`,)
             dispatch({
                 type:TASK_DELETE_SUCCESS,
                 payload:{
@@ -68,7 +69,7 @@ export const updateTasks = (data)=>{
 
     return async(dispatch)=>{
         try{
-            let response = await axios.put(`http://localhost:8080/updatetask`,data)
+            let response = await axios.put(`https://task-backend-1iky.onrender.com/updatetask`,data)
             dispatch({
                 type:TASK_UPDATE_SUCCESS,
                 payload:{

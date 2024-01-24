@@ -120,3 +120,30 @@
     left: 0;
   }
 }
+
+@media only screen and (max-width: 600px) {
+
+  .home-body{
+    height: 740px;
+  }
+
+  .wrapper {
+    display: block;
+  }
+
+  .task-container {
+    min-height: 685px;
+  }
+
+  .wrapper .static-txt {
+    color: #fff;
+    font-size: 40px;
+    font-weight: 400;
+  }
+
+  .wrapper .dynamic-txts{
+    /* display: block; */
+    font-size: 50px;
+  }
+
+}

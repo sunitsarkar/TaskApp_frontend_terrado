@@ -7,7 +7,7 @@ import{USER_CREATE_SUCCESS,USER_CREATE_FAIL,USER_CREATE_SUCCESS_CLEAR,
 export const userCreate = (data)=>{
     return async(dispatch)=>{
         try{
-            let response = await axios.post('http://localhost:8080/register',data)
+            let response = await axios.post('https://task-backend-1iky.onrender.com/register',data)
             console.log(response.data.message)
             dispatch({
                 type: USER_CREATE_SUCCESS,
@@ -32,7 +32,7 @@ export const userCreate = (data)=>{
 export const userGet = (data)=>{
     return async(dispatch)=>{
         try{
-            let response = await axios.post('http://localhost:8080/login',data)
+            let response = await axios.post('https://task-backend-1iky.onrender.com/login',data)
             console.log(response.data.message);
             localStorage.setItem('token',response.data.data)
             dispatch({
